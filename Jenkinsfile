@@ -33,11 +33,11 @@ node {
 		  archive 'target/*.jar'
         },
         publishJunitTestsResultsToSonar: {
-		script {
+	/*	script {
           openshift.withCluster() {
             openshift.newApp('sonarqube-openshift-docker~https://github.com/OpenShiftDemos/sonarqube-openshift-docker')
           }
-        }
+        }*/
           echo "This is branch b"
       })
     }
