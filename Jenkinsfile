@@ -5,7 +5,7 @@ node {
 
     // holds reference to docker image
     def dockerImage
-    // ip address of the docker private repository(nexus)
+    // ip address of the docker private repository
     
     def dockerRepoUrl = "localhost:8083"
     def dockerImageName = "hello-world-java"
@@ -25,7 +25,7 @@ node {
       sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
     }
 	
-	stage('Publish Tests Results'){
+	stage('Run Unit Tests & Sonar'){
       parallel(
         publishJunitTestsResultsToJenkins: {
           echo "Publish junit Tests Results"
@@ -48,8 +48,8 @@ node {
 	  
     }
    
-   /* stage('Deploy Docker Image'){
-      
+    stage('Deploy Image'){
+      /*
       // deploy docker image to nexus
 
       echo "Docker Image Tag Name: ${dockerImageTag}"
@@ -57,5 +57,5 @@ node {
       sh "docker login -u admin -p admin123 ${dockerRepoUrl}"
       sh "docker tag ${dockerImageName} ${dockerImageTag}"
       sh "docker push ${dockerImageTag}"
-    }*/
+   */ }
 }
