@@ -25,19 +25,19 @@ node {
       sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
     }
 	
-	stage('Run Unit Tests & Sonar'){
+/*	stage('Run Unit Tests & Sonar'){
       parallel(
         publishJunitTestsResultsToJenkins: {
           echo "Publish junit Tests Results"
-		  junit '**/target/surefire-reports/TEST-*.xml'
+		  junit '/target/surefire-reports/TEST-*.xml'
 		  archive 'target/*.jar'
         },
         publishJunitTestsResultsToSonar: {
-	/*	script {
+		script {
           openshift.withCluster() {
             openshift.newApp('sonarqube-openshift-docker~https://github.com/OpenShiftDemos/sonarqube-openshift-docker')
           }
-        }*/
+        }
           echo "This is branch b"
       })
     }
@@ -54,7 +54,7 @@ node {
     }
    
     stage('Deploy Image'){
-      /*
+      
       // deploy docker image to nexus
 
       echo "Docker Image Tag Name: ${dockerImageTag}"
@@ -62,5 +62,5 @@ node {
       sh "docker login -u admin -p admin123 ${dockerRepoUrl}"
       sh "docker tag ${dockerImageName} ${dockerImageTag}"
       sh "docker push ${dockerImageTag}"
-   */ }
+    }*/
 }
