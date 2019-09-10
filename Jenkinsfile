@@ -25,13 +25,11 @@ node {
       sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
     }
 	
-	stage("Build Image") {
-              steps {
-                dir('/var/lib/jenkins/jobs/samplede/jobs/samplede-example/workspace/target/') {
-                  sh 'oc start-build hello-world-0.1.0.jar  --from-dir . --follow'
+	stage('Build Image') {
+            dir('./var/lib/jenkins/jobs/samplede/jobs/samplede-example/workspace/target/') {
+                  sh 'oc start-build hello-world-0.1.0.jar  --from-dir. --follow'
                 }  
 	      }
-	}
 /*	stage('Run Unit Tests & Sonar'){
       parallel(
         publishJunitTestsResultsToJenkins: {
