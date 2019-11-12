@@ -23,11 +23,12 @@ node {
     stage('Build Project') {
       // build project via maven
       sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
+	    stash name:"jar", includes:"target/hello-world-0.1.0.jar"
     }
 
     stage('Build Image') {
      
-   // unstash name:"jar"
+    unstash name:"jar"
     sh "oc start-build example --from-file=target/hello-world-0.1.0.jar --follow"
     
    }
