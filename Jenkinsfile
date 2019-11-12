@@ -4,12 +4,12 @@ node {
     def mvnHome = tool 'M2'
 
     // holds reference to docker image
-    def dockerImage
+    //def dockerImage
     // ip address of the docker private repository
     
     //def dockerRepoUrl = "localhost:8083"
-    def dockerImageName = "hello-world-java"
-    def dockerImageTag = "${dockerRepoUrl}/${dockerImageName}:${env.BUILD_NUMBER}"
+    //def dockerImageName = "hello-world-java"
+    //def dockerImageTag = "${dockerRepoUrl}/${dockerImageName}:${env.BUILD_NUMBER}"
     
     stage('Clone Repo') { // for display purposes
       // Get some code from a GitHub repository
@@ -26,7 +26,7 @@ node {
     }
 	
 	stage('Build Image') {
-            dir('./var/lib/jenkins/jobs/samplede/jobs/samplede-example/workspace/target/') {
+            dir('./var/lib/jenkins/jobs/sample123/jobs/sample123/workspace/target/') {
                   sh 'oc start-build hello-world-0.1.0.jar  --from-dir. --follow'
                 }  
 	      }
