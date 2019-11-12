@@ -26,21 +26,19 @@ node {
     }
 
     stage('Build Image') {
-     steps {
+     
     unstash name:"jar"
     sh "oc start-build sample123 --from-file=target/hello-world-0.1.0.jar --follow"
-     }
+    
    }
    stage('Deploy') {
-    steps {
-        script {
+          script {
             openshift.withCluster() {
                 openshift.withProject() {
                   def rm = openshift.selector("dc", templateName).rollout().latest()
                   }
             }
         }
-      }
   }
 /*	stage('Build Image') {
             dir('./var/lib/jenkins/jobs/sample123/jobs/sample123/workspace/target/') {
