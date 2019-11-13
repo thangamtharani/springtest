@@ -9,7 +9,7 @@ pipeline {
   stage('Build') {
      steps {
     git url: "https://github.com/santhoshp5/springtest.git"
-    sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
+    sh "mvn -Dmaven.test.failure.ignore clean package"
 	stash name:"jar", includes:"target/hello-world-0.1.0.jar"
      }
   }
